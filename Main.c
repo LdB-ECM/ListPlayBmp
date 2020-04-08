@@ -271,7 +271,7 @@ HWND CreateListBox (HWND parent,                               // Parent window 
 	SetWindowLongPtr( TreeView , GWL_STYLE, dwStyle );
 	SetWindowSubclass( TreeView, TreeProc, 0, 0 );
 	TreeView_SetBkColor(TreeView, RGB(0xFF, 0, 0xFF));
-	//(TreeView, RGB(0xFF, 0xFF, 0xFF));
+	TreeView_SetTextColor(TreeView, RGB(0xFF, 0xFF, 0xFF));
 	if (hFont == 0) hFont = (HFONT) SendMessage(TreeView, WM_GETFONT, 0, 0);
 	SendMessage(TreeView, WM_SETFONT, (WPARAM)hFont, FALSE);
 
@@ -473,7 +473,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	wc.hCursor		 = LoadCursor(NULL, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
 	wc.lpszMenuName  = NULL;
-	wc.lpszClassName = TEXT("Transparent TreeView");
+	wc.lpszClassName = "Transparent TreeView";
 	wc.hIconSm		 = LoadIcon(NULL, IDI_APPLICATION);
  
 	if(!RegisterClassEx(&wc))
@@ -487,7 +487,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	hwnd = CreateWindowEx( WS_EX_CLIENTEDGE, wc.lpszClassName,
 		"The title of my window", 
                 WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 
-		600, 400, NULL, NULL, hInstance, NULL);
+		ImageWth+50, ImageHt+50, NULL, NULL, hInstance, NULL);
  
 	if(hwnd == NULL)
 	{
